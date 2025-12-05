@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI应用宝 - 发现生活中的AI超能力</title>
+    <meta name="description" content="收集最实用的AI工具，ChatGPT, Midjourney, 效率神器，一站式导航。">
+    <style>
+        :root {
+            --primary: #4F46E5;
+            --primary-light: #EEF2FF;
+            --accent: #F59E0B;
+            --bg: #F8FAFC;
+            --card-bg: #FFFFFF;
+            --text-main: #1E293B;
+            --text-sub: #64748B;
+            --radius: 16px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+        
+        body { background-color: var(--bg); color: var(--text-main); line-height: 1.6; padding-bottom: 50px;}
+        a { text-decoration: none; color: inherit; }
+
+        /* 导航栏 */
+        .navbar {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 5%; background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .logo { font-size: 1.4rem; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+        .btn-submit { padding: 0.5rem 1.2rem; border: 1px solid var(--primary); color: var(--primary); border-radius: 20px; font-size: 0.9rem; transition: 0.3s; }
+        .btn-submit:hover { background: var(--primary); color: white; }
+
+        /* Hero 区域 */
+        .hero {
+            text-align: center; padding: 6rem 1rem 4rem;
+            background: linear-gradient(180deg, #eef2ff 0%, var(--bg) 100%);
+        }
+        .hero h1 { font-size: 2.8rem; margin-bottom: 1rem; font-weight: 900; letter-spacing: -1px; }
+        .hero h1 span { color: var(--primary); }
+        .hero p { font-size: 1.1rem; color: var(--text-sub); margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+        
+        /* 搜索框 */
+        .search-container { max-width: 600px; margin: 0 auto; position: relative; }
+        .search-input {
+            width: 100%; padding: 1.2rem 3rem 1.2rem 1.5rem; border-radius: 50px; border: 2px solid transparent;
+            font-size: 1rem; box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.15); outline: none; transition: 0.3s;
+        }
+        .search-input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1); }
+
+        /* 标签栏 */
+        .filter-bar {
+            display: flex; justify-content: center; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 3rem; padding: 0 1rem;
+        }
+        .filter-btn {
+            padding: 0.6rem 1.2rem; background: white; border-radius: 12px; font-weight: 600; color: var(--text-sub);
+            cursor: pointer; transition: all 0.3s; border: 1px solid rgba(0,0,0,0.05); user-select: none;
+        }
+        .filter-btn:hover { transform: translateY(-2px); color: var(--primary); }
+        .filter-btn.active { background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3); border-color: var(--primary); }
+
+        /* 主要内容布局 */
+        .main-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        .section-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-title::before { content: ''; width: 4px; height: 20px; background: var(--primary); border-radius: 2px; display: block; }
+
+        /* 网格系统 */
+        .app-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem; margin-bottom: 4rem;
+        }
+
+        /* 应用卡片 */
+        .app-card {
+            background: var(--card-bg); border-radius: var(--radius); padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04); transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(0,0,0,0.05); display: flex; flex-direction: column;
+            cursor: pointer; position: relative; overflow: hidden;
+        }
+        .app-card:hover { transform: translateY(-5px); box-shadow: 0 12px 24px -8px rgba(0,0,0,0.1); border-color: #C7D2FE; }
+        
+        .card-top { display: flex; justify-content: space-between; margin-bottom: 1rem; }
+        .icon-box { width: 50px; height: 50px; background: var(--primary-light); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+        .score-badge { font-size: 0.85rem; font-weight: 700; color: var(--accent); background: #FEF3C7; padding: 4px 8px; border-radius: 6px; height: fit-content; }
+
+        .card-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .card-desc { font-size: 0.9rem; color: var(--text-sub); margin-bottom: 1.5rem; flex-grow: 1; line-height: 1.5; }
+        
+        .card-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: auto; }
+        .mini-tag { font-size: 0.75rem; background: #F1F5F9; color: #64748B; padding: 2px 8px; border-radius: 4px; }
+
+        /* 动画类 */
+        .hidden { display: none !important; }
+        .fade-in { animation: fadeIn 0.4s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* 教程板块 */
+        .tutorial-section { background: white; border-radius: var(--radius); padding: 2rem; margin-bottom: 3rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+        .tutorial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+        .tutorial-item { display: flex; gap: 1rem; align-items: center; padding: 1rem; border: 1px solid #F1F5F9; border-radius: 12px; transition: 0.2s; }
+        .tutorial-item:hover { background: var(--primary-light); border-color: transparent; }
+        .t-num { font-size: 1.5rem; font-weight: 900; color: rgba(79, 70, 229, 0.2); }
+        .t-info h4 { font-size: 1rem; font-weight: 600; margin-bottom: 0.2rem; }
+        .t-info p { font-size: 0.85rem; color: var(--text-sub); }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .filter-bar { overflow-x: auto; justify-content: flex-start; padding-bottom: 10px; white-space: nowrap; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">💎 AI应用宝</div>
+        <a href="#" class="btn-submit">提交应用 +</a>
+    </nav>
+
+    <header class="hero">
+        <h1>用AI，让生活 <span>简单一点</span></h1>
+        <p>收录 500+ 生活实用类 AI 工具，不仅仅是工具，更是你的生活方式。</p>
+        <div class="search-container">
+            <input type="text" class="search-input" id="searchInput" placeholder="🔍 搜搜看：做PPT、法律咨询...">
+        </div>
+    </header>
+
+    <div class="filter-bar">
+        <div class="filter-btn active" onclick="filterApps('all', this)">🌀 全部</div>
+        <div class="filter-btn" onclick="filterApps('work', this)">💼 职场办公</div>
+        <div class="filter-btn" onclick="filterApps('life', this)">🏠 居家生活</div>
+        <div class="filter-btn" onclick="filterApps('study', this)">🎓 学习教育</div>
+        <div class="filter-btn" onclick="filterApps('creative', this)">🎨 创意设计</div>
+    </div>
+
+    <div class="main-container">
+        
+        <div class="tutorial-section">
+            <div class="section-title">💡 3分钟上手 AI</div>
+            <div class="tutorial-grid">
+                <a href="#" class="tutorial-item"><div class="t-num">01</div><div class="t-info"><h4>如何用 AI 写周报？</h4><p>告别流水账，只需3步生成完美汇报</p></div></a>
+                <a href="#" class="tutorial-item"><div class="t-num">02</div><div class="t-info"><h4>AI 装修设计指南</h4><p>拍张照，立刻看到房间改造后的样子</p></div></a>
+                <a href="#" class="tutorial-item"><div class="t-num">03</div><div class="t-info"><h4>定制你的专属头像</h4><p>不用花钱约稿，自己生成唯美头像</p></div></a>
+            </div>
+        </div>
+
+        <div class="section-title">🔥 热门工具推荐</div>
+        <div class="app-grid" id="appGrid">
+            </div>
+    </div>
+
+    <script>
+        // 🛠️ 在这里管理你的应用数据
+        const appsData = [
+            {
+                name: "Notion AI",
+                category: "work",
+                desc: "职场人必备的第二大脑。自动帮你整理会议纪要、润色文章、写策划案。",
+                score: "9.9",
+                icon: "📝",
+                tag: "🌟 高效神器",
+                affiliateLink: "https://www.notion.so/" // 记得替换为你的推广链接
+            },
+            {
+                name: "Speak",
+                category: "study",
+                desc: "社恐福音！AI 陪你练口语，实时纠正发音，不用担心说错话被嘲笑。",
+                score: "9.7",
+                icon: "🗣️",
+                tag: "英语救星",
+                affiliateLink: "https://www.speak.com/" 
+            },
+            {
+                name: "Midjourney",
+                category: "creative",
+                desc: "目前地表最强的 AI 绘画工具，无论是写实照片还是二次元插画，效果惊艳。",
+                score: "9.8",
+                icon: "🎨",
+                tag: "设计必备",
+                affiliateLink: "https://www.midjourney.com/" 
+            },
+            {
+                name: "Gamma",
+                category: "work",
+                desc: "做 PPT 不需要排版！输入一个主题，AI 自动生成大纲、文字和精美配图。",
+                score: "9.5",
+                icon: "📊",
+                tag: "PPT神器",
+                affiliateLink: "https://gamma.app/" 
+            },
+            {
+                name: "Kimi",
+                category: "life",
+                desc: "国内最好用的长文档分析工具，扔进去一份财报或小说，它能瞬间告诉你讲了什么。",
+                score: "9.6",
+                icon: "🌙",
+                tag: "免费好用",
+                affiliateLink: "https://kimi.moonshot.cn/" 
+            },
+            {
+                name: "ChatExcel",
+                category: "work",
+                desc: "不用记复杂的公式，直接对它说“把A列的数字加起来算出平均值”，表格自动处理。",
+                score: "9.3",
+                icon: "📊",
+                tag: "表格助手",
+                affiliateLink: "#"
+            },
+            {
+                name: "FitAI 营养师",
+                category: "life",
+                desc: "拍一下你的午餐，自动计算卡路里和营养成分，并给出下一顿的饮食建议。",
+                score: "9.2",
+                icon: "🥗",
+                tag: "健康生活",
+                affiliateLink: "#"
+            },
+            {
+                name: "TripPlanner",
+                category: "life",
+                desc: "输入目的地和预算，1分钟生成精确到小时的保姆级旅游攻略。",
+                score: "9.4",
+                icon: "✈️",
+                tag: "旅游神器",
+                affiliateLink: "#"
+            }
+        ];
+
+        function renderApps(filter = 'all') {
+            const grid = document.getElementById('appGrid');
+            grid.innerHTML = ''; 
+
+            appsData.forEach(app => {
+                if (filter !== 'all' && app.category !== filter) return;
+
+                const card = document.createElement('a');
+                card.href = app.affiliateLink;
+                card.target = "_blank";
+                card.className = "app-card fade-in";
+                card.innerHTML = `
+                    <div class="card-top">
+                        <div class="icon-box">${app.icon}</div>
+                        <div class="score-badge">⭐ ${app.score}</div>
+                    </div>
+                    <h3 class="card-title">${app.name}</h3>
+                    <p class="card-desc">${app.desc}</p>
+                    <div class="card-tags">
+                        <span class="mini-tag">${app.tag}</span>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterApps(category, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderApps(category);
+        }
+
+        // 简单的搜索功能
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const keyword = e.target.value.toLowerCase();
+            const grid = document.getElementById('appGrid');
+            grid.innerHTML = '';
+            
+            appsData.forEach(app => {
+                if (app.name.toLowerCase().includes(keyword) || app.desc.includes(keyword)) {
+                    const card = document.createElement('a');
+                    card.href = app.affiliateLink;
+                    card.target = "_blank";
+                    card.className = "app-card fade-in";
+                    card.innerHTML = `
+                        <div class="card-top"><div class="icon-box">${app.icon}</div><div class="score-badge">⭐ ${app.score}</div></div>
+                        <h3 class="card-title">${app.name}</h3>
+                        <p class="card-desc">${app.desc}</p>
+                    `;
+                    grid.appendChild(card);
+                }
+            });
+        });
+
+        window.onload = () => renderApps('all');
+    </script>
+</body>
+</html>
