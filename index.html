@@ -4,22 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI应用宝 - 探索未来的生活方式</title>
-    <meta name="description" content="收集全球最前沿实用的AI工具，ChatGPT, Midjourney, 效率神器，一站式导航。">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
             /* 核心色板 - 深色科技风 */
-            --primary: #6366f1; /* 更亮的电光紫蓝 */
+            --primary: #6366f1; 
             --primary-glow: rgba(99, 102, 241, 0.4);
-            --accent: #00d2ff; /* 青蓝色高光 */
-            
-            --bg-dark: #0f172a; /* 深空蓝黑背景 */
-            --bg-card: rgba(30, 41, 59, 0.6); /* 深色磨砂玻璃 */
+            --accent: #00d2ff; 
+            --bg-dark: #0f172a; 
+            --bg-card: rgba(30, 41, 59, 0.6); 
             --border-color: rgba(255, 255, 255, 0.1);
-            
-            --text-main: #f8fafc; /* 亮白文字 */
-            --text-sub: #94a3b8; /* 灰蓝文字 */
-            
+            --text-main: #f8fafc; 
+            --text-sub: #94a3b8; 
             --radius: 20px;
         }
 
@@ -30,7 +26,6 @@
             color: var(--text-main); 
             line-height: 1.6; 
             padding-bottom: 80px;
-            /* 背景添加微妙的科技光晕 */
             background-image: 
                 radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
                 radial-gradient(circle at 80% 70%, rgba(0, 210, 255, 0.15) 0%, transparent 50%);
@@ -39,17 +34,16 @@
         }
         a { text-decoration: none; color: inherit; }
 
-        /* 导航栏 - 深色磨砂 */
+        /* 导航栏 */
         .navbar {
             display: flex; justify-content: space-between; align-items: center;
             padding: 1rem 5%; 
-            background: rgba(15, 23, 42, 0.8); /* 深色半透明 */
+            background: rgba(15, 23, 42, 0.8); 
             backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
             position: sticky; top: 0; z-index: 100;
             border-bottom: 1px solid var(--border-color);
         }
         .logo { font-size: 1.4rem; font-weight: 800; color: white; display: flex; align-items: center; gap: 0.5rem; letter-spacing: 1px;}
-        /* 渐变文字效果 */
         .logo span { background: linear-gradient(135deg, var(--accent), var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
         .btn-submit { 
@@ -62,11 +56,8 @@
         .btn-submit:hover { background: var(--primary); border-color: var(--primary); box-shadow: 0 0 15px var(--primary-glow); }
 
         /* Hero 区域 */
-        .hero {
-            text-align: center; padding: 7rem 1rem 5rem;
-        }
+        .hero { text-align: center; padding: 7rem 1rem 5rem; }
         .hero h1 { font-size: 3.5rem; margin-bottom: 1.5rem; font-weight: 900; letter-spacing: -1px; line-height: 1.2;}
-        /* 科技感渐变大标题 */
         .hero h1 .highlight { 
             background: linear-gradient(90deg, #00d2ff, #3a7bd5, #6366f1); 
             background-size: 200% auto;
@@ -74,10 +65,9 @@
             animation: gradientMove 5s ease infinite;
         }
         @keyframes gradientMove { 0% {background-position: 0% 50%;} 50% {background-position: 100% 50%;} 100% {background-position: 0% 50%;} }
-
         .hero p { font-size: 1.2rem; color: var(--text-sub); margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto; }
         
-        /* 搜索框 - 发光效果 */
+        /* 搜索框样式 */
         .search-container { max-width: 640px; margin: 0 auto; position: relative; }
         .search-input {
             width: 100%; padding: 1.4rem 3rem 1.4rem 1.8rem; border-radius: 50px; 
@@ -91,6 +81,7 @@
             border-color: var(--primary); 
             box-shadow: 0 0 25px var(--primary-glow), inset 0 0 10px rgba(99, 102, 241, 0.1); 
             background: rgba(0,0,0,0.2);
+            outline: none;
         }
 
         /* 标签栏 */
@@ -108,40 +99,36 @@
         .filter-btn:hover { color: white; border-color: var(--primary); transform: translateY(-2px); }
         .filter-btn.active { 
             background: linear-gradient(135deg, var(--primary), #4f46e5); 
-            color: white; 
-            border-color: transparent;
+            color: white; border-color: transparent;
             box-shadow: 0 4px 15px var(--primary-glow); 
         }
 
-        /* 主要内容布局 */
+        /* 主体内容 */
         .main-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
         .section-title { font-size: 1.8rem; font-weight: 800; margin-bottom: 2rem; display: flex; align-items: center; gap: 0.8rem; color: white;}
         .section-title::before { content: ''; width: 6px; height: 24px; background: linear-gradient(to bottom, var(--accent), var(--primary)); border-radius: 4px; display: block; box-shadow: 0 0 10px var(--primary-glow);}
 
-        /* 网格系统 */
+        /* 网格 */
         .app-grid {
             display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 2rem; margin-bottom: 4rem;
         }
 
-        /* 应用卡片 - 核心科技感设计 */
+        /* 卡片 */
         .app-card {
             background: var(--bg-card); 
             border-radius: var(--radius); padding: 1.8rem;
-            /* 磨砂玻璃效果 */
             backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--border-color);
             transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
             display: flex; flex-direction: column;
             cursor: pointer; position: relative; overflow: hidden;
         }
-        /* 卡片悬停光效 */
         .app-card:hover { 
             transform: translateY(-8px) scale(1.02); 
             border-color: var(--primary);
             box-shadow: 0 10px 30px -10px var(--primary-glow), inset 0 0 20px rgba(255,255,255,0.05);
         }
-        /* 卡片内部的高光反射线条 */
         .app-card::after {
             content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
@@ -163,69 +150,56 @@
             border: 1px solid rgba(0, 210, 255, 0.2);
             text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
         }
-
         .card-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.6rem; color: white; }
         .card-desc { font-size: 0.95rem; color: var(--text-sub); margin-bottom: 1.8rem; flex-grow: 1; line-height: 1.6; }
-        
         .card-tags { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: auto; }
         .mini-tag { 
-            font-size: 0.8rem; 
-            background: rgba(255,255,255,0.08); 
-            color: var(--text-sub); 
-            padding: 4px 10px; border-radius: 6px; 
+            font-size: 0.8rem; background: rgba(255,255,255,0.08); 
+            color: var(--text-sub); padding: 4px 10px; border-radius: 6px; 
             border: 1px solid var(--border-color);
         }
 
-        /* 教程板块 - 深色模式适配 */
-        .tutorial-section { 
-            background: linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.8));
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border-radius: var(--radius); padding: 2.5rem; margin-bottom: 4rem; 
-            border: 1px solid var(--border-color);
+        /* 搜索无结果时的样式 */
+        .no-result {
+            grid-column: 1 / -1; /* 占满整行 */
+            text-align: center;
+            padding: 4rem 1rem;
+            color: var(--text-sub);
+            font-size: 1.1rem;
+            background: rgba(255,255,255,0.02);
+            border-radius: var(--radius);
+            border: 1px dashed var(--border-color);
         }
-        .tutorial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
-        .tutorial-item { 
-            display: flex; gap: 1.2rem; align-items: center; padding: 1.2rem; 
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--border-color); border-radius: 16px; transition: 0.3s; 
-        }
-        .tutorial-item:hover { 
-            background: rgba(99, 102, 241, 0.1); 
-            border-color: var(--primary); 
-            box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
-            transform: translateX(5px);
-        }
-        .t-num { font-size: 1.8rem; font-weight: 900; color: rgba(255, 255, 255, 0.1); font-family: monospace;}
-        .t-info h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.3rem; color: white; }
-        .t-info p { font-size: 0.9rem; color: var(--text-sub); }
 
         /* 动画类 */
-        .hidden { display: none !important; }
         .fade-in { animation: fadeIn 0.5s ease-out backwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
+        /* 移动端适配 */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.2rem; }
-            .filter-bar { overflow-x: auto; justify-content: flex-start; padding-bottom: 15px; white-space: nowrap; -webkit-overflow-scrolling: touch;}
-            .app-card { padding: 1.5rem; }
+            .filter-bar { overflow-x: auto; justify-content: flex-start; padding-bottom: 15px; white-space: nowrap; }
         }
     </style>
 </head>
 <body>
 
     <nav class="navbar">
-        <div class="logo">
-            <span>✦</span> AI应用宝
-        </div>
+        <div class="logo"><span>✦</span> AI应用宝</div>
         <a href="#" class="btn-submit">提交应用 +</a>
     </nav>
 
     <header class="hero">
         <h1>探索 <span class="highlight">AI驱动</span> 的<br>未来生活方式</h1>
         <p>精选全球前沿 AI 工具，不仅仅是效率提升，更是一次维度的跨越。</p>
-        <div class="search-container">
-            <input type="text" class="search-input" id="searchInput" placeholder="🔍 搜索未来：一键生成PPT、AI法律顾问...">
-        </div>
+<div class="search-container">
+    <div style="position: relative;">
+        <input type="text" class="search-input" id="searchInput" placeholder="🔍 搜应用（搜不到可一键全网搜）...">
+        <button onclick="searchWeb()" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: var(--primary); color: white; border: none; padding: 0.5rem 1rem; border-radius: 30px; cursor: pointer; font-weight: bold;">
+            全网搜 🌐
+        </button>
+    </div>
+</div>
     </header>
 
     <div class="main-container">
@@ -238,158 +212,115 @@
             <div class="filter-btn" onclick="filterApps('creative', this)">🎨 创意引擎</div>
         </div>
 
-        <div class="tutorial-section">
-            <div class="section-title">⚡ 3分钟上手指南</div>
-            <div class="tutorial-grid">
-                <a href="#" class="tutorial-item"><div class="t-num">01</div><div class="t-info"><h4>如何用 AI 写周报？</h4><p>告别流水账，只需3步生成完美汇报</p></div></a>
-                <a href="#" class="tutorial-item"><div class="t-num">02</div><div class="t-info"><h4>AI 装修设计指南</h4><p>拍张照，立刻看到房间改造后的样子</p></div></a>
-                <a href="#" class="tutorial-item"><div class="t-num">03</div><div class="t-info"><h4>定制你的专属头像</h4><p>不用花钱约稿，自己生成唯美头像</p></div></a>
-            </div>
-        </div>
-
         <div class="section-title">🚀 热门工具推荐</div>
         <div class="app-grid" id="appGrid">
             </div>
     </div>
 
-    <script>
-        // 🛠️ 在这里管理你的应用数据
-        // 这里的 affiliateLink 就是你未来的“赚钱链接”
-        const appsData = [
-            {
-                name: "Notion AI",
-                category: "work",
-                desc: "职场人必备的第二大脑。自动帮你整理会议纪要、润色文章、写策划案。",
-                score: "9.9",
-                icon: "📝",
-                tag: "🌟 高效神器",
-                affiliateLink: "https://www.notion.so/" // 替换为你的推广链接
-            },
-            {
-                name: "Speak",
-                category: "study",
-                desc: "社恐福音！AI 陪你练口语，实时纠正发音，不用担心说错话被嘲笑。",
-                score: "9.7",
-                icon: "🗣️",
-                tag: "英语救星",
-                affiliateLink: "https://www.speak.com/" 
-            },
-            {
-                name: "Midjourney",
-                category: "creative",
-                desc: "目前地表最强的 AI 绘画工具，无论是写实照片还是二次元插画，效果惊艳。",
-                score: "9.8",
-                icon: "🎨",
-                tag: "设计必备",
-                affiliateLink: "https://www.midjourney.com/" 
-            },
-            {
-                name: "Gamma",
-                category: "work",
-                desc: "做 PPT 不需要排版！输入一个主题，AI 自动生成大纲、文字和精美配图。",
-                score: "9.5",
-                icon: "📊",
-                tag: "PPT神器",
-                affiliateLink: "https://gamma.app/" 
-            },
-            {
-                name: "Kimi",
-                category: "life",
-                desc: "国内最好用的长文档分析工具，扔进去一份财报或小说，它能瞬间告诉你讲了什么。",
-                score: "9.6",
-                icon: "🌙",
-                tag: "免费好用",
-                affiliateLink: "https://kimi.moonshot.cn/" 
-            },
-            {
-                name: "ChatExcel",
-                category: "work",
-                desc: "不用记复杂的公式，直接对它说“把A列的数字加起来算出平均值”，表格自动处理。",
-                score: "9.3",
-                icon: "📊",
-                tag: "表格助手",
-                affiliateLink: "#"
-            },
-            {
-                name: "FitAI 营养师",
-                category: "life",
-                desc: "拍一下你的午餐，自动计算卡路里和营养成分，并给出下一顿的饮食建议。",
-                score: "9.2",
-                icon: "🥗",
-                tag: "健康生活",
-                affiliateLink: "#"
-            },
-            {
-                name: "TripPlanner",
-                category: "life",
-                desc: "输入目的地和预算，1分钟生成精确到小时的保姆级旅游攻略。",
-                score: "9.4",
-                icon: "✈️",
-                tag: "旅游神器",
-                affiliateLink: "#"
-            }
-        ];
+<script>
+    // 定义一个全局变量来存储数据
+    let appsData = [];
 
-        // 渲染逻辑 (保持不变)
-        function renderApps(filter = 'all') {
-            const grid = document.getElementById('appGrid');
-            grid.innerHTML = ''; 
-
-            appsData.forEach((app, index) => {
-                if (filter !== 'all' && app.category !== filter) return;
-
-                const card = document.createElement('a');
-                card.href = app.affiliateLink;
-                card.target = "_blank";
-                card.className = "app-card fade-in";
-                // 添加一个小延迟，让卡片逐个出现，更有科技感
-                card.style.animationDelay = `${index * 0.05}s`; 
-
-                card.innerHTML = `
-                    <div class="card-top">
-                        <div class="icon-box">${app.icon}</div>
-                        <div class="score-badge">⭐ ${app.score}</div>
-                    </div>
-                    <h3 class="card-title">${app.name}</h3>
-                    <p class="card-desc">${app.desc}</p>
-                    <div class="card-tags">
-                        <span class="mini-tag">${app.tag}</span>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
-        }
-
-        function filterApps(category, btn) {
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            renderApps(category);
-        }
-
-        document.getElementById('searchInput').addEventListener('input', (e) => {
-            const keyword = e.target.value.toLowerCase();
-            const grid = document.getElementById('appGrid');
-            grid.innerHTML = '';
+    // 🚀 核心修改：使用 Fetch API 读取外部 data.json 文件
+    // 注意：这个功能在本地直接打开html文件可能报错（跨域），但在 GitHub Pages 上是完美的。
+    async function loadData() {
+        try {
+            const response = await fetch('data.json');
+            if (!response.ok) throw new Error('网络请求失败');
+            appsData = await response.json();
             
-            appsData.forEach((app, index) => {
-                if (app.name.toLowerCase().includes(keyword) || app.desc.includes(keyword)) {
-                    const card = document.createElement('a');
-                    card.href = app.affiliateLink;
-                    card.target = "_blank";
-                    card.className = "app-card fade-in";
-                    card.style.animationDelay = `${index * 0.05}s`;
-                    card.innerHTML = `
-                        <div class="card-top"><div class="icon-box">${app.icon}</div><div class="score-badge">⭐ ${app.score}</div></div>
-                        <h3 class="card-title">${app.name}</h3>
-                        <p class="card-desc">${app.desc}</p>
-                        <div class="card-tags"><span class="mini-tag">${app.tag}</span></div>
-                    `;
-                    grid.appendChild(card);
-                }
-            });
-        });
+            // 数据加载完成后，渲染页面
+            renderApps('all');
+        } catch (error) {
+            console.error('无法加载应用数据:', error);
+            // 这里可以做一个友好的错误提示
+            document.getElementById('appGrid').innerHTML = '<p style="color:white;text-align:center">😕 数据加载失败，请刷新页面重试。</p>';
+        }
+    }
 
-        window.onload = () => renderApps('all');
-    </script>
+    // 渲染函数 (逻辑保持不变)
+    function renderApps(filter = 'all') {
+        const grid = document.getElementById('appGrid');
+        grid.innerHTML = ''; 
+        appsData.forEach((app, index) => {
+            if (filter !== 'all' && app.category !== filter) return;
+            createCard(app, grid, index);
+        });
+    }
+
+    // 创建卡片 (逻辑保持不变，字段微调适配 JSON)
+    function createCard(app, container, index) {
+        const card = document.createElement('a');
+        card.href = app.link; // JSON 里我用了 link，如果你的 JSON 是 affiliateLink 记得改这里
+        card.target = "_blank";
+        card.className = "app-card fade-in";
+        card.style.animationDelay = `${index * 0.03}s`; // 稍微加快一点加载速度
+        
+        // 处理 tags 数组，把它们变成一个个标签
+        let tagsHtml = '';
+        if (app.tags && Array.isArray(app.tags)) {
+            tagsHtml = app.tags.map(tag => `<span class="mini-tag">${tag}</span>`).join('');
+        }
+
+        card.innerHTML = `
+            <div class="card-top">
+                <div class="icon-box">${app.icon || '🚀'}</div>
+                <div class="score-badge">⭐ ${app.score}</div>
+            </div>
+            <h3 class="card-title">${app.name}</h3>
+            <p class="card-desc">${app.desc}</p>
+            <div class="card-tags">${tagsHtml}</div>
+        `;
+        container.appendChild(card);
+    }
+
+    // 分类筛选
+    function filterApps(category, btn) {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderApps(category);
+    }
+
+    // 🔎 搜索功能
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+        const keyword = e.target.value.toLowerCase().trim();
+        const grid = document.getElementById('appGrid');
+        grid.innerHTML = '';
+        
+        // 搜索本地 JSON 数据
+        let localResults = appsData.filter(app => 
+            app.name.toLowerCase().includes(keyword) || 
+            app.desc.toLowerCase().includes(keyword) ||
+            (app.tags && app.tags.some(t => t.toLowerCase().includes(keyword)))
+        );
+
+        if (localResults.length > 0) {
+            localResults.forEach((app, index) => createCard(app, grid, index));
+        } else {
+            // 空状态 + 全网搜
+            grid.innerHTML = `
+                <div class="no-result">
+                    <p>😕 本地暂未收录 "${keyword}"</p>
+                    <div style="margin-top: 1rem;">
+                        <button onclick="searchWeb('${keyword}')" style="padding: 0.8rem 2rem; background: var(--primary); color: white; border: none; border-radius: 12px; cursor: pointer; font-weight: bold; font-size: 1rem; box-shadow: 0 0 15px var(--primary-glow);">
+                            去全网搜索 "${keyword}" 🌐
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+    });
+
+    // 全网搜索跳转
+    function searchWeb(query) {
+        const keyword = query || document.getElementById('searchInput').value;
+        if(!keyword) return alert('请输入关键词');
+        const googleUrl = `https://www.google.com/search?q=${encodeURIComponent(keyword + ' AI tool app')}`;
+        window.open(googleUrl, '_blank');
+    }
+
+    // 初始化：调用 loadData 而不是直接 renderApps
+    window.onload = loadData;
+</script>
 </body>
 </html>
